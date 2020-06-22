@@ -1,0 +1,439 @@
+:root{
+  --main : #b31c35;
+}
+body{
+  background-color: #fafafa;
+}
+/* MODIFICATIONS FOR ME: CHRISTIAN  */
+.bg-red {
+    background-color: var(--main) !important ;
+  }
+  .meioAmeio{
+    font-size: 17px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    text-decoration: underline;    
+  }
+.list-cart{
+  margin-top: 40px;
+  position: fixed;
+  z-index:1020;
+  align-content: center;
+}
+.user{
+  float: right;
+}
+  .category{
+    background-color: #f2f2f2;
+    border-top: 3px solid var(--main);
+    color: #444;
+    font-size: 17px;
+    font-weight: 600;
+    list-style: outside none none !important;
+    padding: 1em 2em 1em 2em !important;
+    position: relative;
+    width: auto;
+    letter-spacing: 0.5px;
+  }
+  
+  .meioAmeio a{
+    color: var(--main);
+  }
+  
+  .thumb{
+    border: 1px solid #BDBDBD;
+    width: 90px;
+    height: 90px;
+    padding: 3px 3px 3px 3px;
+    border-radius: 5px;
+  }
+  .adicionar{
+    font-size: 13px;
+  }
+  .produto{
+    color: #444444;
+    font-weight: 600;
+    display: block;
+    font-size: 16px;
+    letter-spacing: 0.9px;
+  }
+  .preco{
+    color: var(--main);
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .descricao{
+    display: block;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  @media (max-width: 767.98px) {
+    .juncao{
+        display: inline;
+    }
+    .meioAmeio{
+        font-size: 14px;
+    }
+    .thumb{
+        width: 70px;
+        height: 70px;
+    }
+    .produto{
+        font-size: 16px;
+        font-weight: 600;
+        
+    }
+    .descricao{
+        font-size: 12px;
+        margin-bottom: 5px;
+        line-height: 14px;
+    }
+    .preco{
+        font-size: 17px;
+        font-weight: 600;
+        float: left;
+        margin-bottom: 0px;
+    }
+    .adicionar{
+        display: none;
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    .juncao{
+        display: inline;
+    }
+    .thumb{
+        width: 70px;
+        height: 70px;   
+    }
+    .produto{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .descricao{
+        font-size: 11px;
+        margin-bottom: 7px;
+        line-height: 13px;
+    }
+    .preco{
+        font-size: 14px;
+        font-weight: 600;
+        float: right;
+        margin-bottom: 0px;
+        margin-top: -10px;
+    }
+    .adicionar{
+        display: none;
+    }  
+  }
+  
+  .your-order {
+    background: #f2f2f2 none repeat scroll 0 0;
+    overflow: hidden;
+    padding: 30px 40px 45px;
+  }
+  .your-order h3 {
+    border-bottom: 1px solid #d8d8d8;
+    color: #444;
+    font-size: 25px;
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    width: 100%;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  .your-order-table table {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    width: 100%;
+  }
+  .your-order-table table th,
+  .your-order-table table td {
+    border-bottom: 1px solid #d8d8d8;
+    border-right: medium none;
+    font-size: 14px;
+    padding: 15px 0;
+    text-align: center;
+  }
+  .your-order-table table td .product-quantity {
+    font-weight: 400;
+  }
+  .your-order-table table th {
+    border-top: medium none;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 250px;
+  }
+  .your-order-table table .shipping ul li input {
+    position: relative;
+    top: 2px;
+  }
+  .your-order-table table .shipping th {
+    vertical-align: top;
+  }
+  .your-order-table table .order-total th {
+    border-bottom: medium none;
+    font-size: 18px;
+  }
+  .your-order-table table .order-total td {
+    border-bottom: medium none;
+  }
+  .your-order-table table tr.cart_item:hover {
+    background: #F9F9F9
+  }
+  .your-order-table table tr.order-total td span {
+    color: #444;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  
+.etapAtiva{
+  background-color: var(--main); 
+  color: #fafafa;
+  padding: 7px 7px 7px 7px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.etapa{
+  background-color: rgb(223, 221, 221);
+  color:grey;
+  padding: 7px 7px 7px 7px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 500;
+}
+@media (max-width: 575.98px) {
+  .etapa{
+      display: none;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 5px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 35px;
+  width: 35px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 0.3rem;
+  outline: none;
+  position: relative;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: var(--main);
+}
+.option-input:checked::before {
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 19px;
+  text-align: center;
+  line-height: 35px;
+}
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: var(--main);
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+@keyframes click-wave {
+  0% {
+    height: 35px;
+    width: 35px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+.tituloEndereco{
+  margin-bottom: 2px;
+}
+.taxaEntrega{
+  color: #444347;
+  display: inline;
+  font-weight: 400;
+}
+.valor{
+  display: inline;
+  color: var(--main);
+  font-weight: 400;
+}
+.sombra{
+  box-shadow: 1px 1px 7px rgb(214, 213, 213);
+}
+
+@media (max-width: 575.98px) {
+  .taxaEntrega, .valor{
+      font-size: 14px;
+  }
+}
+/* ==========RADIO PARA OS CARTÕES========== */
+  
+.option-input-card {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: -1px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.1rem;
+  outline: none;
+
+}
+.option-input-card:hover {
+  background: #9faab7;
+}
+.option-input-card:checked {
+  background: var(--main);
+}
+.option-input-card:checked::before {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 19px;
+  text-align: center;
+  line-height: 25px;
+}
+.option-input-card:checked::after {
+  -webkit-animation: click-wave2 0.65s;
+  -moz-animation: click-wave2 0.65s;
+  animation: click-wave2 0.65s;
+  background: var(--main);
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.option-input-card.radio {
+  border-radius: 50%;
+}
+.option-input-card.radio::after {
+  border-radius: 50%;
+}
+@keyframes click-wave2 {
+  0% {
+    height: 10px;
+    width: 10px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+
+.shop-total > h3 {
+  background-color: var(--main);
+  color: #fff;
+  font-size: 20px;
+  margin: 0;
+  padding: 23px 30px 22px;
+  text-transform: capitalize;
+}
+.shop-total ul {
+  padding: 37px 0 35px;
+  list-style-type: none;
+}
+.shop-total ul li {
+  color: #333;
+  font-size: 16px;
+  padding-bottom: 22px;
+  text-transform: capitalize;
+}
+.shop-total ul li.order-total {
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 18px;
+  padding-bottom: 32px;
+}
+.shop-total ul li span {
+  float: right;
+}
+
+.continue-shopping-btn > button {
+  background-color:  #262529;
+  color: #fff;
+  display: block;
+  letter-spacing: 1px;
+  padding: 23px 10px 22px;
+  text-transform: uppercase;
+  border: none;
+  width: 100%;
+}
+
+.continue-shopping-btn > button:hover {
+  background-color: var(--main);
+  color: #fff;
+}
+
+.finished-request > button {
+  background-color: var(--main);
+  color: #fff;
+  display: block;
+  letter-spacing: 1px;
+  padding: 23px 10px 22px;
+  text-transform: uppercase;
+  border: none;
+  width: 100%;
+}
+
+.finished-request > button:hover {
+  background-color: #262529;
+  color: #fff;
+}
