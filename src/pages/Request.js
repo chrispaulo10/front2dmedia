@@ -3,10 +3,10 @@ import '../bootstrap.css';
 import { Container, Row, Col } from 'reactstrap';
 import Delivery from '../componentes/Delivery';
 import Payment from '../componentes/Payment';
+import OrderFinished from '../componentes/OrderFinished';
 function Request(){
     return(
         <div>
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous" />
             <Container>
                 <Row className="justify-content-center mt-4 mb-4">
                     <Col xs="12" sm="6" md="5" lg="4">

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import '../bootstrap.css';
-import { Collapse, ListGroup, ListGroupItem, Row, Col,Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Collapse, ListGroup} from 'reactstrap';
 import Product from './Product';
-import { useSelector } from 'react-redux';
+import {addItem} from '../store/cart';
+import { useSelector, useDispatch } from 'react-redux';
 function Menu() {
     
+    // ABRIR COLLAPSE DOS PRODUTOS
     const [collapse, setCollapse] = useState(false);
 
     const [status, setStatus] = useState('fas fa-angle-right');
@@ -13,20 +15,30 @@ function Menu() {
     
     const onExited = () => setStatus('fas fa-angle-right');
 
-    const [modal, setModal] = useState(false);
-
     const openProducts = () => setCollapse(!collapse);
+    // FIM COLLAPSE
+    
+    const dispatch = useDispatch();
 
-    const openModalExtras = () => setModal(!modal);
+    // VARIÁVEL PARA CHAMAR OS PRODUTOS
+    const products = useSelector(state => state.products);
 
-    const products = useSelector(state => {
-        return state;
-    })
+    function addItemCart(product){
+        dispatch(addItem(product))
+    }    
 
     return(
         <div>
        <div className="mt-5 mb-2">
+       <div className="input-group mb-3 mt-4">
+            <input type="text" className="form-control" placeholder="Digite o que você precisa" aria-label="Recipient's username" aria-describedby="button-addon2" />
+            <div className="input-group-append">
+                <button className="btn btn-outline-danger" type="button" id="button-addon2">
+                    <i className="fas fa-search"></i>
+                </button>
             </div>
+            </div>
+        </div>
             <div onClick={openProducts} className="category mb-3">
                 PIZZAS
                 <span className="float-right"> <i className={status}></i> </span>
@@ -36,21 +48,12 @@ function Menu() {
                     onEntered={onEntered}
                     onExited={onExited}>
             <ListGroup>
-                {products.map((product, index) => <Product key={index} product={product} /> )}
+
+                {/* IMPRESSÃO DOS PRODUTOS */}
+
+                {products.map((product, index) => <Product key={index} product={product} addItemCart={addItemCart} /> )}
             </ListGroup>
             </Collapse>
-            {/* MODAL EXTRAS */}
-                <Modal isOpen={modal} toggle={openModalExtras}>
-                <ModalHeader toggle={openModalExtras}>Extras</ModalHeader>
-                <ModalBody>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </ModalBody>
-                <ModalFooter>
-                <Button color="primary" onClick={openModalExtras}>Do Something</Button>{' '}
-                <Button color="secondary" onClick={openModalExtras}>Cancel</Button>
-                </ModalFooter>
-                </Modal>
-            {/* FIM MODAL EXTRAS */}
         </div>
     );    
 }

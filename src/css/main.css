@@ -437,3 +437,26 @@ body{
   background-color: #262529;
   color: #fff;
 }
+
+.link{
+  font-size: 16px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 9px;
+}
+
+.title-final{
+  font-weight: 400;
+  color: #262529 ;
+}
+
+.subtitle-final{
+  font-weight: 300;
+}
+
+.price-final{
+  font-weight: 400;
+  color: var(--main);
+}

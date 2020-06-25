@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ListGroupItem, Row, Col} from 'reactstrap';
 
-export default function Product({ product }){
+export default function Product({ product, addItemCart }){
+
 return(
-    <ListGroupItem tag="button">
+    <ListGroupItem tag="button" onClick={()=> addItemCart(product)}>
         <div className="p-1">
             <Row>
                 <Col lg="2" md="3" sm="2" xs="3">
@@ -23,7 +24,6 @@ return(
                 </Col>
             </Row>
         </div>
-    </ListGroupItem>
-
+         </ListGroupItem>
 );
 }

@@ -94,7 +94,12 @@ function Payment() {
                         <i className="fas fa-comments-dollar"></i> &nbsp;
                         Cupom de desconto
                     </h5>
-                    <input type="text"/>
+                    <div className="input-group mb-3 mt-2">
+                    <input type="text" className="form-control" placeholder="Insira seu cupom" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                    <div className="input-group-append">
+                        <button className="btn btn-outline-danger" type="button" id="button-addon2">Confirmar</button>
+                    </div>
+                    </div>
             </li>
         </ul>
         </div>
