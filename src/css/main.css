@@ -447,6 +447,18 @@ body{
   padding: 9px;
 }
 
+.subtotal-mobile{
+  background-color: var(--main);
+  color: #fff;
+}
+.subtotal-mobile h6{
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 2px; 
+}
+
 .title-final{
   font-weight: 400;
   color: #262529 ;
@@ -460,3 +472,54 @@ body{
   font-weight: 400;
   color: var(--main);
 }
+
+
+.input-formula{
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 1.3em 0;
+}
+
+.input-float,.label-float{
+  transition: 0.4s ease;
+}
+
+.label-float{
+  font-size: 1em;
+  padding-left: 5px;
+  transform: translate(4px, -14px) scale(1.02);
+  margin-bottom: 2px;
+  cursor: text;
+  transform-origin: left top;
+  color: #757575;
+  position: absolute;
+}
+
+.input-float{
+  font-size: 1.18em;
+  padding: 10px 10px 10px 10px;
+  border: none;
+  border-bottom: 2px solid #9e9e9e;
+  outline: none;
+  background-color: transparent;
+}
+.input-float::placeholder{
+  opacity: 0;
+}
+
+.input-float:focus,
+.input-float:not(:placeholder-shown){
+  border-bottom: 2px solid #b31c35;
+
+}
+
+.input-float:not(:placeholder-shown) ~ .label-float, 
+.input-float:focus ~ .label-float{
+  transform: translate(10px, -39px) scale(0.99);
+  padding-left: 0px;
+  color: #b31c35;
+}
+input:-internal-autofill-selected {
+  background-color: transparent;
+}
+

@@ -1,14 +1,19 @@
 import React from 'react';
 import '../bootstrap.css';
-import {Row, Col, ListGroupItem} from 'reactstrap';
+import {Row, Col} from 'reactstrap';
 import {useSelector, useDispatch} from 'react-redux';
-import {removeItem} from '../store/cart';
+import {removeItem} from '../../store/cart';
 
 export default function YouOrderMobile() {
   
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
-    const qtd = 2;
+    const qtd = 1;
+
+    // VER PREÇO TOTAL DO CARRINHO
+    var numeros = cart.map(item => item.price * qtd)
+    const total = numeros.reduce((total, numero) => total + numero, 0);
+    const total2 = (total.toFixed(2)); 
 
     function removeItemCart(id){
       dispatch(removeItem(id));
@@ -19,10 +24,10 @@ export default function YouOrderMobile() {
         
         {cart.length === 0 ?
         (
-        <li className="list-group-item">
-        Sem itens no carrinho
-        </li>) : 
-        (
+        <li className="list-group-item text-center">
+        <h6>  Sem itens no carrinho </h6>
+        </li>
+        ) : (
           <React.Fragment>
             {cart.map((item, index) => (
               <div key={index}>
@@ -47,8 +52,15 @@ export default function YouOrderMobile() {
               </li>
               </div>              
             ) )}
+            
+            <li className="list-group-item subtotal-mobile">
+              <div className="d-flex w-100 justify-content-between">
+                <h6>Subtotal: </h6>
+                <h6>R$ {total2}</h6> 
+              </div>
+            </li>
           </React.Fragment>
-        )
+        ) 
         }
       </ul>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import Headers from '../componentes/Header/Headers';
+import Headers from '../../componentes/header';
 import Menu from '../componentes/Menu';
 import YourOrder from '../componentes/YourOrder';
 import { Container, Row, Col } from 'reactstrap';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../bootstrap.css';
 import { Collapse, ListGroup} from 'reactstrap';
 import Product from './Product';
-import {addItem} from '../store/cart';
+import {addItem} from '../../store/cart';
 import { useSelector, useDispatch } from 'react-redux';
 function Menu() {
     

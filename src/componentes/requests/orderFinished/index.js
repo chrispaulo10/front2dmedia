@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row,Col } from "reactstrap";
-import '../bootstrap.css';
+import '../../../css/bootstrap.css';
 
 export default function OrderFinished(){
     return(

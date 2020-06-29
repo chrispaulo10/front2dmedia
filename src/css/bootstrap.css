@@ -6009,12 +6009,6 @@ a.close.disabled {
   outline: 0;
 }
 
-@media (max-width: 575.98px) {
-  .modal-content{
-    width: 95%;
-  }
-}
-
 .modal-backdrop {
   position: fixed;
   top: 0;

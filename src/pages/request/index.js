@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import '../bootstrap.css';
+import '../../css/bootstrap.css';
 import { Container, Row, Col } from 'reactstrap';
-import Delivery from '../componentes/Delivery';
-import Payment from '../componentes/Payment';
-import OrderFinished from '../componentes/OrderFinished';
+import Delivery from '../../componentes/requests/delivery';
+import Payment from '../../componentes/requests/payment';
 function Request(){
     return(
         <div>

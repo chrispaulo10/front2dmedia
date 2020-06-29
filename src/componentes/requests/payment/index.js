@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../bootstrap.css';
+import '../../../css/bootstrap.css';
 import { ListGroupItem, Row, Col, Collapse } from 'reactstrap';
 
 function Payment() {
@@ -16,7 +16,7 @@ function Payment() {
     return(
         <div>
         <h5>Escolha a forma de pagamento</h5>
-        <ul className="list-group shadow-sm mb-4">
+        <ul className="list-group shadow-sm mb-3">
             <li className="list-group-item">     
                     <Row>
                         <Col xs="2" sm="2" md="2" lg="1">
@@ -37,7 +37,7 @@ function Payment() {
             </li>
         </ul>
 
-        <ul className="list-group shadow-sm mb-4">
+        <ul className="list-group shadow-sm mb-3">
             <ListGroupItem onClick={openCreditCard}>     
                 <h5 class="tituloEndereco">
                     <i className="far fa-credit-card"></i> &nbsp;
@@ -63,7 +63,7 @@ function Payment() {
             </Collapse>
         </ul>
 
-        <ul className="list-group shadow-sm mb-4">
+        <ul className="list-group shadow-sm mb-5">
             <ListGroupItem onClick={openCreditCard}>     
                 <h5 class="tituloEndereco">
                     <i className="fas fa-credit-card"></i> &nbsp;
