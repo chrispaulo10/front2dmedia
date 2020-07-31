@@ -2808,6 +2808,41 @@ fieldset:disabled a.btn {
 .show > .btn-light.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5);
 }
+/* BOTÃO DE ESCOLHA DO CLIENTE */
+.btn-selection-purple{
+  color: #2F0C61;
+  background-color: #fff;
+  border-color: #2F0C61;
+}
+
+.btn-selection-purple:hover{
+  color: #fff;
+  background-color: #2F0C61;
+  border-color: #2F0C61;
+}
+
+.btn-selection-purple-active{
+  color: #fff;
+  background-color: #2F0C61;
+  border-color: #2F0C61;
+}
+.btn-selection-purple-active:hover{
+  color: #fff;
+  background-color: #2F0C61;
+  border-color: #2F0C61;
+}
+
+.btn-purple {
+  color: #fff;
+  background-color: #2F0C61;
+  border-color: #2F0C61;
+}
+
+.btn-purple:hover {
+  color: #fff;
+  background-color: #8E0394;
+  border-color: #8E0394;
+}
 
 .btn-dark {
   color: #fff;

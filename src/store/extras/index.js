@@ -1,9 +1,11 @@
 import {createAction, createReducer} from '@reduxjs/toolkit';
 
-const INITIAL_STATE = [false];
+const INITIAL_STATE = false;
 
-export const openModal = createAction('OPEN_MODAL');
+export const showModal = createAction('SHOW_MODAL');
+export const hideModal = createAction('HIDE_MODAL');
 
 export default createReducer(INITIAL_STATE,{
-    [openModal.type] : (state, action) => [...state, action.payload],
+    [showModal.type] : (state) => state = true,
+    [hideModal.type] : (state) => state = false,
 })

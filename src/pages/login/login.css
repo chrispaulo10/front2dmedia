@@ -1,0 +1,161 @@
+.register{
+    background: -webkit-linear-gradient(left, #2F0C61, #8E0394);
+    padding: 3%;
+    height: 100vh;
+}
+.register-left{
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+}
+.register-left input{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    width: 60%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #383d41;
+    margin-top: 30%;
+    margin-bottom: 3%;
+    cursor: pointer;
+}
+.register-right{
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+.register-left img{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 85%;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+.register-left p{
+    font-weight: lighter;
+    padding: 12%;
+    margin-top: -9%;
+}
+.register .register-form{
+    padding: 10%;
+    margin-top: 8%;
+    width: 100%;
+}
+.btnRegister{
+    float: right;
+    margin-top: 10%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: #2F0C61;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+}
+.register .nav-tabs{
+    margin-top: 3%;
+    border: none;
+    background: #2F0C61;
+    border-radius: 1.5rem;
+    width: 28%;
+    float: right;
+}
+.register .nav-tabs .nav-link{
+    padding: 3%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.register .nav-tabs .nav-link:hover{
+    border: none;
+}
+.register .nav-tabs .nav-link.active{
+    width: 100px;
+    color: #2F0C61;
+    border: 2px solid #2F0C61;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+.register-heading{
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+}
+
+/* BOTÃO DE LOGIN */
+
+
+.glossy_button{
+    position: relative;
+    height: inherit;
+    padding: 13px 20px 11px;
+    color: #2F0C61;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin: 20px 0 0;
+    text-transform: uppercase;
+    border: 1px solid #2F0C61;
+    outline: none;
+    overflow: hidden;
+    width: 80%;
+    transition: .6s;
+    align-content: center;
+    background-color: transparent;
+}
+
+.glossy_button::before, .glossy_button::after{
+    position: absolute;
+    content: '';
+    left: 0; top: 0;
+    height: 100%;
+    filter: blur(30px);
+    opacity: .4;
+    transition: .6s;  
+}
+
+.glossy_button::before{
+    width: 60px;
+    background-color: rgba(255, 255, 255, .6);
+    transform: translateX(-130px) skewX(-45deg);
+}
+
+.glossy_button::after{
+    width: 30px;
+    background-color: rgba(255, 255, 255, .6);
+    transform: translateX(-130px) skewX(-45deg);
+}
+
+.glossy_button:hover:before,
+.glossy_button:hover:after{
+    opacity: .6;
+    transform: translateX(320px) skewX(-45deg);
+}
+
+.glossy_button:hover {
+    background: #2F0C61;
+    color: #f2f2f2;
+}
+
+.link-back{
+    display: inline-block;
+    color: #2F0C61;
+}
+.link-back:hover{
+    text-decoration: underline;
+    color: #2F0C61;
+}

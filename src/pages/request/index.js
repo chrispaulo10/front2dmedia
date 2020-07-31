@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../css/bootstrap.css';
 import { Container, Row, Col } from 'reactstrap';
 import Delivery from '../../componentes/requests/delivery';
@@ -28,7 +28,7 @@ function Request(){
                         <Payment />
                     </Col>
                     <Col xs="12" sm="12" md="4" lg="4">
-                        <div class="shop-total">
+                        <div className="shop-total">
                             <h3>Resumo do pedido</h3>
                             <ul>
                                 <li>
@@ -39,7 +39,7 @@ function Request(){
                                 Frete
                                 <span>$9.00</span>
                                 </li>
-                                <li class="order-total">
+                                <li className="order-total">
                                 Cupom
                                 <span>0</span>
                                 </li>

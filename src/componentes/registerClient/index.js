@@ -1,11 +1,7 @@
-import React,{useState} from 'react';
-import {ModalBody, ModalFooter, Button} from 'reactstrap';
-import {useDispatch} from 'react-redux';
-import {addAddress} from '../../../store/address';
+import React, {useState} from 'react';
 
-export default function FormAddress() {
-
-    const dispatch = useDispatch();
+export default function RegisterClient(){
+    
 
     const [form, setForm] = useState({
         zip : '',
@@ -20,23 +16,30 @@ export default function FormAddress() {
         setForm({...form, [e.target.name]: e.target.value});
     }
 
-    function onSubmit(e){
-        e.preventDefault();
-        dispatch(addAddress(form));
-        setForm({
-            zip : '',
-            city : '',
-            neighborhood : '',
-            number : '',
-            street : '',
-            complement : '',
-        })
-    }
+
 
     return(
         <div>
-            <ModalBody>
-            <form>
+        <form>
+            {/* <!-- CEP E ESTADO --> */}
+            <div className="row">
+                    <div className="col-lg-8">
+                        <div className="input-formula">
+                            <input onChange={formChange} value={form.name} required type="text" name="name" id="name" className="input-float" placeholder="A" />
+                            <label for="name" id="label" className="label-float">
+                                Nome
+                            </label>
+                        </div>
+                    </div>
+                    <div className="col-lg-4">
+                        <div className="input-formula">
+                            <input onChange={formChange} value={form.phone} type="text" name="phone" id="phone" required className="input-float" placeholder="A" />
+                            <label for="phone" id="label" className="label-float">
+                                Whatsapp
+                            </label>
+                        </div>
+                    </div>
+                </div>            
             {/* <!-- CEP E ESTADO --> */}
                 <div className="row">
                     <div className="col-lg-4">
@@ -95,10 +98,6 @@ export default function FormAddress() {
                     </label>
                 </div>
             </form>
-            </ModalBody>
-            <ModalFooter>
-            <Button color="danger" onClick={onSubmit}>Confirmar</Button>{' '}                            
-            </ModalFooter>
         </div>
     );
 }

@@ -9,8 +9,8 @@ function Delivery() {
     
     return(
         <div>
-        <h5>Onde devemos entregar?</h5>
-        <ul className="list-group shadow-sm mb-5">
+        <h5>Local de entrega</h5>
+        <ul className="list-group shadow-sm mb-3" >
             <ItemAddress />
             <ListGroupItem tag="button" className="text-center" onClick={toggle} action>
                 <i className="fas fa-plus"></i> &nbsp; 

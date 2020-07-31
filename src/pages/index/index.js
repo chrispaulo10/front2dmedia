@@ -1,7 +1,7 @@
 import React from 'react';
 import Headers from '../../componentes/header';
-import Menu from '../componentes/Menu';
-import YourOrder from '../componentes/YourOrder';
+import Menu from '../../componentes/main/Menu';
+import YourOrder from '../../componentes/main/YourOrder';
 import { Container, Row, Col } from 'reactstrap';
 
 function Index() {

@@ -1,14 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import categories from './categories';
 import productReducer from './products';
 import cartReducer from './cart';
-import openModal from './extras';
+import isOpenModal from './extras';
 import addressReducer from './address';
 
 export default configureStore({
     reducer: {
+        categories : categories ,
         products: productReducer,
-        modal_open : openModal,
+        isOpen : isOpenModal,
         cart : cartReducer,
         address : addressReducer,
     }
