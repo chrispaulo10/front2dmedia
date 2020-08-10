@@ -1,30 +1,23 @@
 import React from 'react';
-import { ListGroupItem, Row, Col} from 'reactstrap';
-import producto from '../../img/caixa.png'
+// import { ListGroupItem, Row, Col} from 'reactstrap';
 
-export default function Product({ product, abrirModal, categoria }){
+
+export default function Product({ product, addItemCart, categoria }){
 
 return(
-    <ListGroupItem tag="button" onClick={()=> abrirModal(product, categoria)}>
-        <div className="p-1">
-            <Row>
-                <Col lg="2" md="3" sm="2" xs="3">
-                    {/* THUMBNAIL */}
-                    <img src={producto} className="thumb" />
-                </Col>
-                <Col lg="7" md="6" sm="7" xs="9">
-                    {/* PRODUCT */}
-                    <div className="float-left text-justify">
-                    <div className="produto text-uppercase"> {product.product_name} </div>
-                    <div className="descricao"> {product.ingredients} </div>
-                    </div>  
-                </Col>
-                <Col lg="3" md="3" sm="3">
-                    {/* PRICE */}
-                    <span className="preco"> R$ {product.price} </span> 
-                </Col>  
-            </Row>
+        <div className="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+        <div className="card" style={{ maxWidth: "16rem" }} onClick={()=> addItemCart(product, categoria)}>
+            <img src="https://img.elo7.com.br/product/zoom/2E2D7F4/tag-etiqueta-de-lingerie-moda-intima-personalizada-5x9cm-cartao.jpg"
+            className="card-img-top img-fluid" height="150" alt=""/>
+            <div className="card-body">
+            <div className="produto text-uppercase"> {product.nome_produto} </div>
+            </div>
+            <div className="card-footer">
+                <div className="preco">    
+                R$ {product.preco}
+                </div>
+            </div>
         </div>
-    </ListGroupItem>
+        </div>
 );
 }

@@ -1,28 +1,51 @@
-import React from 'react';
+import React,{useState} from 'react';
+import axios from '../../server/axios';
 
 export default function SearchClient(){
+
+    const [all,setAll] = useState([])
+
+    const [pesquisa, setPesquisa] = useState({
+        nome_cliente : '',
+        telefone_cliente: '',
+    });
+
+    const pesquisando = event =>{
+        setPesquisa({...pesquisa, [event.target.name] : event.target.value});
+        axios.get(`ControllerCliente.php?consultar_nome&nome=${pesquisa.nome_cliente}`)
+        .then(
+            retornando => {
+                setAll(retornando.data);
+            }
+        )
+    }
+
     return(
         <div>
         <form>
         <div className="row mb-3">
             <div className="col">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nome do cliente" />
-                    <div class="input-group-append">
-                        <button class="btn btn-purple" type="button"><i className="fas fa-search"></i> </button>
+                <div className="input-group mb-3">
+                    <input type="text" className="form-control" name="nome_cliente"
+                    value={pesquisa.nome_cliente} onChange={pesquisando}
+                    placeholder="Nome do cliente" />
+                    <div className="input-group-append">
+                        <button className="btn btn-purple" type="button"><i className="fas fa-search"></i> </button>
                     </div>
                 </div>                    
             </div>
             <div className="col">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Telefone do cliente" />
-                    <div class="input-group-append">
-                        <button class="btn btn-purple" type="button"><i className="fas fa-search"></i></button>
+                <div className="input-group mb-3">
+                    <input type="text" className="form-control" placeholder="Telefone do cliente" />
+                    <div className="input-group-append">
+                        <button className="btn btn-purple" type="button"><i className="fas fa-search"></i></button>
                     </div>
                 </div>                    
             </div>
         </div>
         </form>
+        {all.length === 0 ? ("") : (
+        <div> 
         <h6>Resultados da pesquisa</h6>
             <div className="table-responsive">
                 <table className="table table-striped  text-center">
@@ -36,30 +59,22 @@ export default function SearchClient(){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th>1</th>
-                    <td>Christian Paulo</td>
-                    <td>85988759706</td>
-                    <td>Rua Coronel Antônio Botelho de Sousa</td>
-                    <td><button className="btn btn-info btn-sm"> <i className="fas fa-check"></i> </button></td>
-                    </tr>
-                    <tr>
-                    <th>2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td><button className="btn btn-info btn-sm"> <i className="fas fa-check"></i> </button></td>
-                    </tr>
-                    <tr>
-                    <th>3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td><button className="btn btn-info btn-sm"> <i className="fas fa-check"></i> </button></td>
-                    </tr>
+                    {all.map((item,index) => (
+                        <tr key={index}>
+                            <td> {item.id_cliente} </td>
+                            <td> {item.nome} </td>
+                            <td> {item.fone} </td>
+                            <td> {item.cnpj_cpf} </td>
+                            <td>
+                                <button id={item.id_cliente} className="btn btn-info btn-sm"> <i className="fas fa-check"></i> </button>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
                 </table>
             </div>
+        </div>        
+        )}
         </div>
     );
 }

@@ -40,15 +40,10 @@ export default function YouOrderMobile() {
                 <div key={index}>
                 <li className="list-group-item">
                   <div className="d-flex w-100 justify-content-between">
-                    <h6>{cart.cat} - {cart.produto.product_name} </h6>
+                    <h6>{cart.cat} - {cart.produto.nome_produto} </h6>
                     <small onClick={() => removeItemCart(index)}><i className="fas fa-trash"></i></small>
                   </div>
                   <div className="mb-2">
-                    {cart.adicionais.map((extra) =>
-                      <small className="text-uppercase text-justify">
-                        {extra.group} : {extra.name} / &nbsp;
-                      </small>                      
-                )}
                   </div>
                   <Row>
                     <Col>
@@ -59,7 +54,7 @@ export default function YouOrderMobile() {
                       </h6>
                     </Col>
                     <Col>
-                      <h6 className="float-right">R$ {parseInt(cart.produto.price,10) + cart.priceExtras}  </h6>
+                      <h6 className="float-right">R$ {parseFloat(cart.produto.preco)}  </h6>
                     </Col>
                   </Row>
                 </li>

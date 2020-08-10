@@ -20,12 +20,12 @@ export default function CustomerSelection(){
     return(
             <ModalTeste open={opening} size="lg" header="Selecione o cliente" body={
             <div>
-                <div className="row justify-content-center mb-4 mt-1">   
-                    <div className="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <button className={tela === 0 ? "btn btn-selection-purple" : "btn btn-selection-purple-active" } onClick={() => setarTela(1)}> Pesquisar cliente </button>
-                    </div>
-                    <div className="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <button className={tela === 1 ? "btn btn-selection-purple" : "btn btn-selection-purple-active" }  onClick={() => setarTela(0)}> Cadastrar cliente </button>
+                <div className="row justify-content-right mb-4 mt-1">   
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <button className={tela === 0 ? "btn btn-selection-purple" : "btn btn-selection-purple-active" } onClick={() => setarTela(1)}>
+                            <i className="fas fa-search"></i> Pesquisar cliente </button> &nbsp; &nbsp;
+                        <button className={tela === 1 ? "btn btn-selection-purple" : "btn btn-selection-purple-active" } onClick={() => setarTela(0)}>
+                        <i className="fas fa-plus"></i> Cadastrar cliente </button>
                     </div>
                 </div>
                 {tela === 1 ? <SearchClient /> : <RegisterClient /> }
