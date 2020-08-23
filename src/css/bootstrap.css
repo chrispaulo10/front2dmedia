@@ -4811,7 +4811,7 @@ input[type="button"].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: #F1F4F6;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -4825,6 +4825,7 @@ input[type="button"].btn-block {
 
 .card-footer {
   padding: 0.75rem 1.25rem;
+  background-color: #2F0C61;
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -10065,12 +10066,23 @@ button.bg-dark:focus {
   font-weight: bolder !important;
 }
 
+.teste-40{
+  height: 2px;
+  width: 100%;
+}
+
 .font-italic {
   font-style: italic !important;
 }
 
 .text-white {
   color: #fff !important;
+}
+.bg-purple{
+  background-color: #2F0B61 !important ;
+}
+.text-purple{
+  color: #2F0B61 !important ;
 }
 
 .text-primary {

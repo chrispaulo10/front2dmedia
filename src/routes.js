@@ -2,19 +2,17 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import Index from './pages/index';
-import Request from './pages/request';
 import login from './pages/login';
-import Register from './pages/register';
 import Pending from './pages/pending';
+import Approved from './pages/approved';
 export default function Routes (){
     return(
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Index} />
-                <Route path="/request" component={Request} />
                 <Route path="/login" component={login} />
-                <Route path="/register" component={Register} />
                 <Route path="/pending" component={Pending} />
+                <Route path="/approved" component={Approved} />
             </Switch>
         </BrowserRouter>
     );

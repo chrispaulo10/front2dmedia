@@ -1,26 +1,40 @@
 import React, { useState } from 'react';
-import {Row, Col} from 'reactstrap';
+import {Row, Col, Alert} from 'reactstrap';
 import {useSelector, useDispatch} from 'react-redux';
-import {removeItem} from '../../store/cart';
+import {removeItem, resetCart} from '../../store/cart';
 import axios from '../../server/axios';
 
 export default function YourOrder() {
 
-    const cart = useSelector(state => state.cart);
+    // const[quantidade, setQuantidade] = useState();
+
+    let cart = useSelector(state => state.cart);
+
+    let teste = cart.map((item,index) => {
+        return({id : index, quant : 1})
+    });
+
+    console.log(teste)
 
     const dispatch = useDispatch();
     const [qtd,setQtd] = useState(1);
 
-    function addQtd(){
-    setQtd(qtd+1);
+    function addQtd(index){
+        teste.map(item => {
+            if(item.id === index){
+                item.quant = 5;
+            }
+            return item;
+        })
     }
 
     function rmQtd(){
     setQtd(qtd-1);
     }
 
+
     const [form, setForm] = useState({
-        desconto : '',
+        desconto : 0,
         nome_cliente : '',
     })
 
@@ -30,13 +44,6 @@ export default function YourOrder() {
 
     var total = concatenar_preco.reduce((total, numero) => total + numero, 0);
 
-    const [subtotal,setSubtotal] = useState();
-
-    function addDesconto(event){
-        setForm({...form, [event.target.name]: event.target.value});
-        var valor = parseInt(event.target.value,10)
-        setSubtotal(total - total * (valor/100));
-    }
 
     function nomeCliente(event){
         setForm({...form, [event.target.name]: event.target.value });
@@ -46,6 +53,12 @@ export default function YourOrder() {
         dispatch(removeItem(id));
     }
     
+    const [alertCad, setAlertCad] = useState(false);
+
+    function alertarSucesso(){setAlertCad(true)}
+
+    function fecharSucesso(){setAlertCad(false)}
+
     function enviar_post(){
 
         let data = new Date()
@@ -58,27 +71,28 @@ export default function YourOrder() {
         let date_time = `${ano}-${mes}-${dia} ${hora}:${min}:${seg}`;        
         let nome = form.nome_cliente;
         
-        let dados = {
-            cadastrar : id_dos_produtos
-        }
-
         axios.get(`ControllerPedido.php?cadastrar&nome_cliente=${nome}&data_hora=${date_time}`).then(
             retorno => {
                 id_dos_produtos.map(item => (
-                    axios.get(`ControllerPedidoProduto.php?cadastrar&id_pedido=${retorno.data.id_pedido}&id_produto=${item}`)
+                    axios.get(`ControllerPedidoProduto.php?cadastrar&id_pedido=${retorno.data.id_pedido}&id_produto=${item}&qtd=1`)
                     .then(
                         retorna =>{
-                            console.log(retorna.data)
+                            if (retorna) {
+                                alertarSucesso();
+                                setTimeout(()=>{
+                                    fecharSucesso()
+                                    dispatch(resetCart());
+                                    setForm({...form, nome_cliente:'' });
+                                }, 3000)
+                            }
                         }
                     )
                 )
                 )
             }
         )
-
     };
     
-
     return(
         <div> 
             <div className="your-order wow bounceInRight mt-5" data-wow-delay="0.2s" data-wow-duration="1.1s">
@@ -106,7 +120,7 @@ export default function YourOrder() {
                     <small>Qtd: &nbsp;
                         <i className="fas fa-minus-circle text-danger" onClick={rmQtd}></i> &nbsp;
                         <span> {cart.quantidade} </span> &nbsp;
-                        <i className="fas fa-plus-circle text-success" onClick={addQtd}></i>
+                        <i className="fas fa-plus-circle text-success" onClick={()=>addQtd(index)}></i>
                     </small>
                     </Col>
                     <Col>
@@ -117,19 +131,14 @@ export default function YourOrder() {
                 
             )}
             <li className="list-group-item item-orcamento">
-            <div className="input-group">
-            <input type="text" className="form-control" placeholder="Desconto" name="desconto" value={form.desconto} onChange={addDesconto}/>
-            <div className="input-group-append">
-                <span className="input-group-text" id="basic-addon2">%</span>
-            </div>
-            </div>
-            </li>               
-            <li className="list-group-item item-orcamento">
                 <div className="d-flex w-100 justify-content-between">
                     <h6>Subtotal: </h6>
-                    <h6>R$ {subtotal ? subtotal.toFixed(2) : total.toFixed(2)}</h6> 
+                    <h6>R$ {total.toFixed(2)}</h6> 
                 </div>
             </li>
+                <Alert color="success" className="text-center mb-0 mt-3" isOpen={alertCad} fade={false}>
+                    <i className="fas fa-check"></i> Orçamento cadastrado!
+                </Alert>
             <center>
                 <button className="glossy_button" onClick={enviar_post}>Finalizar</button>
             </center>

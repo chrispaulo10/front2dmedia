@@ -1,5 +1,6 @@
 {
   "name": "2dsystem",
+  "homepage": "http://atendimento.2dmedia.com.br",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

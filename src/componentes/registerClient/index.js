@@ -4,6 +4,8 @@ export default function RegisterClient(){
     
 
     const [form, setForm] = useState({
+        name : '',
+        phone : '',
         zip : '',
         city : '',
         neighborhood : '',

@@ -1,6 +1,7 @@
 :root{
   --main : #2F0C61;
 }
+
 body{
   background-color: #fafafa;
 }
@@ -40,7 +41,7 @@ body{
 }
 
   .category{
-    background-color: #f2f2f2;
+    background-color: #F1F4F6;
     border-top: 3px solid var(--main);
     color: #444;
     font-size: 17px;
@@ -70,13 +71,13 @@ body{
     color: #444444;
     font-weight: 600;
     display: block;
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: 0.9px;
   }
   .preco{
-    color: var(--main);
+    color: #fafafa;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 17px;
   }
   .descricao{
     display: block;
@@ -123,7 +124,7 @@ body{
         height: 70px;   
     }
     .produto{
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 600;
     }
     .descricao{
@@ -132,7 +133,7 @@ body{
         line-height: 13px;
     }
     .preco{
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 600;
     }
     .adicionar{
@@ -141,7 +142,7 @@ body{
   }
   
   .your-order {
-    background: #f2f2f2 none repeat scroll 0 0;
+    background: #F1F4F6 none repeat scroll 0 0;
     overflow: hidden;
     padding: 30px 40px 45px;
   }
@@ -507,9 +508,7 @@ body{
 
 .link{
   font-size: 16px;
-  font-family: 'Oswald', sans-serif;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 9px;
 }
@@ -645,7 +644,7 @@ input:-internal-autofill-selected {
 
 .glossy_button:hover {
     background: #2F0C61;
-    color: #f2f2f2;
+    color: #F1F4F6;
 }
 
 .link-back{
@@ -657,8 +656,16 @@ input:-internal-autofill-selected {
     color: #2F0C61;
 }
 .item-orcamento{
-  background-color: #F2F2F2;
+  background-color: #F1F4F6;
 }
 .fr{
   float: right;
+}
+.text-oswald{
+  font-family: Oswald, sans-serif;
+  font-weight: 800;
+}
+.list-purple{
+  background-color: var(--main);
+  color: #F1F4F6;
 }

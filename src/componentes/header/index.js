@@ -20,8 +20,8 @@ function Headers(){
         <div className="mb-5">
         <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-red">
         <Container>
-            <a className="navbar-brand" href="index.js">
-              <img src={logo} width="110" />
+            <a className="navbar-brand" href=" ">
+              <img src={logo} width="130" alt="..."/>
             </a>
           {/* BUTTON SHOPPING */}
           <button className="navbar-toggler text-light" type="button" id="cart">
@@ -37,12 +37,15 @@ function Headers(){
               <li className="nav-item link active">
                 <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
               </li>
-              <li className="nav-item link">
-                <Link className="nav-link" to="/pending">Orçamentos pendentes</Link>
+              <li className="nav-item link active">
+                <Link className="nav-link" to="/pending">Orçamentos Pendentes</Link>
               </li>
-              <li className="nav-item link">
+              <li className="nav-item link active">
+                <Link className="nav-link" to="/approved">Orçamentos Aprovados</Link>
+              </li>
+              {/* <li className="nav-item link active">
                 <Link className="nav-link" to="/login">Clientes</Link>
-              </li>
+              </li> */}
             </ul>
                 </Collapse>
             </Container>
