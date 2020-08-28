@@ -33,12 +33,13 @@ export default function FinishRequestPending({dados, id_proprietario = 1 , valor
         // SE FOR RETIRADA, TIPO DE FRETE 1 E LOCAL = ID_PONTO_DISTRIBUIÇÃO
         // SE FOR ENTREGA, TIPO DE FRETE 2 E LOCAL = ID_CLIENTE PARA PEGAR O BAIRRO DELE
         // SE FOR CORREIOS, TIPO DE FRETE 3 LOCAL = ID_CLIENTE E VALOR DO FRETE CORREIO PEGO COM A API  
-        setFinal({...final, local: event.target.value, valor_frete : value, valor_final: valor.total + value})
+        setFinal({...final, local: Number(event.target.value), valor_frete : value, valor_final: valor.total + value})
     };
     function mudaEntrega(event){
         setFrete({...frete, tipo : parseInt(event.target.value,10)})
         setFinal({...final, tipo_frete : parseInt(event.target.value,10)});
     }
+
     useEffect(()=>{
         axios.get(`ControllerPontoDistribuicao.php?listar&id_proprietario=${id_proprietario}`).then(
             retorna => {
@@ -46,6 +47,7 @@ export default function FinishRequestPending({dados, id_proprietario = 1 , valor
                 }
         )
     },[id_proprietario])
+    
     useEffect(()=>{
         frete.tipo === 2 &&
         axios.get(`ControllerCliente.php?consultar_endereco&id_cliente=${dados.id}`).then(
@@ -110,23 +112,27 @@ export default function FinishRequestPending({dados, id_proprietario = 1 , valor
 
 
     const enviarTudo = event => {
-
-            var url = `ControllerCompra.php?cadastrar&data_previsao=${final.data_previsao}&desconto=${final.desconto}&id_cliente=${final.id_cliente}&id_pedido=${final.id_pedido}&forma_pagamento=${final.forma_pagamento}&observacao=${final.observacao}&pagamento_inicial=${final.pagamento_inicial}&subtotal_bruto=${final.subtotal_bruto}&subtotal_desconto=${final.subtotal_desconto}&tipo_frete=${final.tipo_frete}&valor_final=${final.valor_final}&valor_frete=${final.valor_frete}&local=${final.local}`;  
-            axios.get(url).then(
-                retorna => { 
-                    if(retorna.data.error){
-                        alertarErro()
-                        setTimeout(()=>{ fecharErr() },2200)
+            if (final.local !== 0) {
+                var url = `ControllerCompra.php?cadastrar&data_previsao=${final.data_previsao}&desconto=${final.desconto}&id_cliente=${final.id_cliente}&id_pedido=${final.id_pedido}&forma_pagamento=${final.forma_pagamento}&observacao=${final.observacao}&pagamento_inicial=${final.pagamento_inicial}&subtotal_bruto=${final.subtotal_bruto}&subtotal_desconto=${final.subtotal_desconto}&tipo_frete=${final.tipo_frete}&valor_final=${final.valor_final}&valor_frete=${final.valor_frete}&local=${final.local}`;  
+                axios.get(url).then(
+                    retorna => { 
+                        if(retorna.data.error){
+                            alertarErro()
+                            setTimeout(()=>{ fecharErr() },2200)
+                        }
+                        else{
+                            alertarSucesso();
+                            setTimeout(()=>{ fecharSucesso() },1500)
+                            setTimeout(()=>{ document.location.reload(true); },2000)
+                        }
                     }
-                    else{
-                        alertarSucesso();
-                        setTimeout(()=>{ fecharSucesso() },1500)
-                        setTimeout(()=>{ document.location.reload(true); },2000)
-                    }
-                }
-            ).catch(function (error) {
-                console.log(error);
-            })
+                ).catch(function (error) {
+                    console.log(error);
+                })
+            } else {
+                alertarErro()
+                setTimeout(()=>{ fecharErr() },2200)
+            }
     }
 
     console.log(final)
@@ -235,7 +241,7 @@ export default function FinishRequestPending({dados, id_proprietario = 1 , valor
                                     </li>
                                     <li>
                                         Subtotal s/ desconto
-                                        <span>R${final.subtotal_bruto}</span>
+                                        <span>R${final.subtotal_bruto.toFixed(2)}</span>
                                     </li>
                                     {final.desconto &&
                                     <div>
@@ -245,7 +251,7 @@ export default function FinishRequestPending({dados, id_proprietario = 1 , valor
                                         </li>
                                         <li>
                                             Subtotal c/desconto
-                                            <span>R${final.subtotal_desconto}</span>
+                                            <span>R${final.subtotal_desconto.toFixed(2)}</span>
                                         </li>                                        
                                     </div>}
                                     <li>
@@ -269,11 +275,11 @@ export default function FinishRequestPending({dados, id_proprietario = 1 , valor
                                     </li>
                                     <li className="order-total">
                                         Valor restante
-                                        <span>R$ {restante}</span>
+                                        <span>R$ {restante.toFixed(2)}</span>
                                     </li>
                                     <li>
                                         Valor total
-                                        <span>R$ {final.valor_final} </span>
+                                        <span>R$ {final.valor_final.toFixed(2)} </span>
                                     </li>
                                 <Alert color="warning" className="text-center mt-2 mb-0" isOpen={alertErr} fade={false}>
                                     <i className="fas fa-exclamation-triangle"></i> Informe todos os campos!

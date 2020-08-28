@@ -60,18 +60,9 @@ export default function YourOrder() {
     function fecharSucesso(){setAlertCad(false)}
 
     function enviar_post(){
-
-        let data = new Date()
-        let ano = data.getFullYear();
-        let mes = data.getMonth();
-        let dia = data.getDate();
-        let hora    = data.getHours();
-        let min     = data.getMinutes();        
-        let seg     = data.getSeconds();        
-        let date_time = `${ano}-${mes}-${dia} ${hora}:${min}:${seg}`;        
         let nome = form.nome_cliente;
         
-        axios.get(`ControllerPedido.php?cadastrar&nome_cliente=${nome}&data_hora=${date_time}`).then(
+        axios.get(`ControllerPedido.php?cadastrar&nome_cliente=${nome}`).then(
             retorno => {
                 id_dos_produtos.map(item => (
                     axios.get(`ControllerPedidoProduto.php?cadastrar&id_pedido=${retorno.data.id_pedido}&id_produto=${item}&qtd=1`)
@@ -115,18 +106,19 @@ export default function YourOrder() {
                     <h6>{cart.cat} - {cart.produto.nome_produto} </h6>
                     <small onClick={() => removeItemCart(index)}><i className="fas fa-trash"></i></small>
                 </div>
-                <Row>
-                    <Col>
-                    <small>Qtd: &nbsp;
-                        <i className="fas fa-minus-circle text-danger" onClick={rmQtd}></i> &nbsp;
-                        <span> {cart.quantidade} </span> &nbsp;
-                        <i className="fas fa-plus-circle text-success" onClick={()=>addQtd(index)}></i>
-                    </small>
-                    </Col>
-                    <Col>
+                <div className="row">
+                    <div className="col-6 col-lg-6 col-md-6 col-sm-6">
+                        <form className="form-inline">
+                            <div className="form-group">
+                                <label for="inputPassword6">Qtd : 1</label> &nbsp;
+                                {/* <input type="number" id="inputPassword6" className="form-control form-control-sm" style={{width:60,fontSize:10}} /> */}
+                            </div>
+                        </form>
+                    </div>
+                    <div className="col-6 col-lg-6 col-md-6 col-sm-6">
                     <h6 className="float-right">R$ {parseFloat(cart.produto.preco)}  </h6>
-                    </Col>
-                </Row>
+                    </div>
+                </div>
                 </li>
                 
             )}

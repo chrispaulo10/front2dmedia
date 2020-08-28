@@ -4865,12 +4865,16 @@ input[type="button"].btn-block {
 .thumbnail{
   transition: 0.4s ease;
 }
-.teste:hover .thumbnail{
+.product{
+  cursor: pointer;
+}
+.product:hover .thumbnail{
   overflow: hidden;
   transform: scale(1.05);
+
   
 }
-.teste:hover{
+.product:hover{
   box-shadow: 10px 10px 40px rgba(163, 163, 163, 0.3);
 }
 

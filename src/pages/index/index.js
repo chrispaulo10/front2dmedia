@@ -14,11 +14,12 @@ function Index() {
         <Col lg="8" md="12" sm="12" xs="12">
           <Menu />
         </Col>
-        <Col lg="4">
+        <Col lg="4" className="body-order" >
           <YourOrder />
         </Col>
       </Row>
     </Container>
+    {/* <a href="# " className="back-to-top"><i class="fas fa-chevron-up"></i></a> */}
     </div>
   );
 }

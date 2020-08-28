@@ -13,7 +13,7 @@ export default function Menu() {
     useEffect(() => {
         axios.get('ControllerCategoria.php?consultar_categoria_produtos&id_proprietario=1').then(
             response => {
-            setAll(response.data);
+            response.data.error ? setAll([]) : setAll(response.data);
         })
     }, [])
 

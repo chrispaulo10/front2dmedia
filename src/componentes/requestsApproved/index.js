@@ -21,6 +21,7 @@ export default function RequestApproved(){
                 }else{
                     let modify = retorno.data
                     setAll(modify)
+                    console.log(modify)
                     setAll2(
                         modify.map(item => {
                             return({
@@ -88,17 +89,17 @@ export default function RequestApproved(){
             })
         )   
     }
-    console.log(all2);
+
 
 return(
     <div>
         <div className="mt-5"> <hr />
-            <div className="mt-5 mb-4">
+            <div className="mt-5 mb-3">
                 <div className="form-inline">
                     <h4 className="text-purple text-uppercase mt-0 mb-0">Orçamento: </h4> &nbsp; &nbsp;
                     <select className="custom-select custom-select-sm" value={situacao} onChange={trocaSituacao}>
                         <option value="1">Aprovado</option>
-                        <option value="2">Em montagem</option>
+                        <option value="2">Em produção</option>
                         <option value="6">Disponível para retirada</option>
                         <option value="3">Saiu para Entrega</option>
                         <option value="4">Concluído</option>
@@ -106,18 +107,21 @@ return(
                     </select>
                 </div> 
             </div>
-
             {all.length === 0 ? <alert className="alert alert-warning mt-5"> NENHUM ORÇAMENTO NESTE STATUS! </alert> : 
-                <div className="row mt-2 mb-5">
+                <div className="row mb-5">
                     {all.map((item,index) => (
-                        <div className="col-lg-4 col-md-6 col-sm-12 col-12 mb-4" key={index}>
+                        <div className="col-lg-4 col-md-6 col-sm-12 col-12 mb-3" key={index}>
                         <div className="card mt-4 shadow-sm">
                             <h6 className="card-header bg-light">
                             <div className="row justify-content-between">
-                                <div className="col-3 text-left">                                  
-                                    #{item.id_compra}
+                                <div className="col-4 text-left">
+                                    <a href={`http://gestao.2dmedia.com.br/pedidos/cupom_fiscal/${item.id_pedido}`} className="text-purple"
+                                    target="_blank" >
+                                    <i className="fas fa-print"></i> 
+                                    </a> &nbsp;
+                                    #{item.id_pedido}                               
                                 </div>
-                                <div className="col-9 text-right">
+                                <div className="col-8 text-right">
                                 <i className="far fa-calendar-alt"></i> {item.compras.data_hora_compra}
                                 </div>
                             </div>
@@ -144,7 +148,7 @@ return(
                                     </h6>
                                 </li>
                                 }
-
+                                <UncontrolledCollapse toggler={`#detalhes${item.id_compra}`}>
                                 {item.produtos.map((produto,index2) =>
                                     <li className="list-group-item" key={index2}>
                                         <div className="row justify-content-between">
@@ -180,7 +184,7 @@ return(
                                         </h6>
                                         </li>
                                 }
-                                <UncontrolledCollapse toggler={`#detalhes${item.id_compra}`}>
+                                
                                 {item.compras.frete === "delivery" &&
                                 <div> 
                                 <li className="list-group-item text-uppercase text-purple">
@@ -264,7 +268,6 @@ return(
                                             </div>
                                         </div>
                                     </li>
-
                                 </div>                                
                                 }
                                 <li className="list-group-item text-center text-uppercase">
@@ -318,7 +321,7 @@ return(
                                     </h6>
                                 </li>                                
                                 }
-
+                                </UncontrolledCollapse>
                                 <li className="list-group-item text-center text-uppercase">
                                     <h6 className="mb-0">
                                         <div className="row justify-content-between">
@@ -331,7 +334,6 @@ return(
                                         </div> 
                                     </h6>
                                 </li>                                                           
-                                </UncontrolledCollapse>
                                 <li className="list-group-item text-center text-uppercase text-purple">
                                     <a href="" id={`detalhes${item.id_compra}`} > Mostrar/Fechar detalhes </a>
                                 </li>
@@ -355,7 +357,7 @@ return(
                                     <select className="custom-select custom-select-sm" onChange={selectMudarStatus} id={item.id_pedido}>
                                         <option selected disabled>Mudar status para:</option>
                                         <option value="1">Aprovado</option>
-                                        <option value="2">Em montagem</option>
+                                        <option value="2">Em produção</option>
                                         <option value="6">Disponível para retirada</option>
                                         <option value="3">Saiu para Entrega</option>
                                         <option value="4">Concluído</option>

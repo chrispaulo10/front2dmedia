@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import { showModal } from '../../store/extras';
 import CustomerSelection from '../customerselection';
 import axios from '../../server/axios';
+import { UncontrolledCollapse } from 'reactstrap';
 export default function RequestPending(){
 
     const [all, setAll] = useState([])
@@ -71,8 +72,9 @@ return(
                     <alert className="alert alert-warning mt-3"> NENHUM ORÇAMENTO PENDENTE! </alert>
                     : 
                     (
+                    
                     all.map((item, index) => (
-                        <div className="col-lg-4 col-md-6 col-sm-12 col-12 mb-4" key={index}>
+                        <div className="col-lg-4 col-md-6 col-sm-12 col-12 mb-3" key={index}>
                         <div className="card mt-4 shadow-sm">
                             <h6 className="card-header bg-light">
                             <div className="row justify-content-between">
@@ -91,6 +93,7 @@ return(
                                         {item.nome_cliente}
                                     </h6>
                                 </li>
+                                <UncontrolledCollapse  toggler={`#detalhes${item.id_pedido}`}>
                                 {item.produtos.map((produto,index2) =>
                                     <li className="list-group-item" key={index2}>
                                         <div className="row justify-content-between">
@@ -114,16 +117,17 @@ return(
                                                 <h6>Subtotal:</h6>
                                             </div>
                                             <div className="col-4 text-right">
-                                                <h6 className="text-purple"> R$ {produto.sub_total_produto}  </h6>
+                                                <h6 className="text-purple"> R$ {produto.sub_total_produto.toFixed(2)}  </h6>
                                             </div>
                                         </div>
                                     </li>                                        
                                     )}
+                                </UncontrolledCollapse>
                                 <div>
                                     <li className="list-group-item text-uppercase text-purple">
                                         <div className="d-flex w-100 justify-content-between">
                                             <h6 className="mb-0" >Subtotal bruto: </h6>
-                                            <h6 className="mb-0">R$ {item.sub_total_bruto}</h6> 
+                                            <h6 className="mb-0">R$ {item.sub_total_bruto.toFixed(2)}</h6> 
                                         </div>
                                     </li>                                        
                                     <li className="list-group-item">
@@ -147,12 +151,11 @@ return(
                                 </li>                                        
                             </div>
                             ))}
-                                
+                            <li className="list-group-item text-center text-uppercase text-purple">
+                                <a href="" id={`detalhes${item.id_pedido}`} > Mostrar/Fechar detalhes </a>
+                            </li>                            
                             </ul>    
                             <div className="card-body text-right">
-                                <button className="btn btn-danger btn-sm">
-                                <i className="fas fa-trash"></i> Excluir
-                                </button> &nbsp;
                                 <button className="btn btn-success btn-sm" onClick={()=> aprovar(item.id_pedido)}>
                                 <i className="fas fa-check"></i> Aprovar
                                 </button>
