@@ -3,7 +3,7 @@ import logo from '../../img/LogoVBranco.png';
 import './login.css';
 import { Link, useHistory } from 'react-router-dom';
 import axios from '../../server/axios';
-import { response } from 'express';
+
 
 export default function Login (){
 
