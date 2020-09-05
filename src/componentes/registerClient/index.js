@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from '../../server/axios';
 import { Alert } from 'reactstrap';
+import InputMask from 'react-input-mask';
 
 export default function RegisterClient(){
 
@@ -188,27 +189,6 @@ export default function RegisterClient(){
         }
     }
 
-    function mascaraCpf(e){
-        var cpf =  e.target;
-        if (cpf.value.length===3){
-            cpf.value=cpf.value+".";
-        } if (cpf.value.length===7){
-            cpf.value=cpf.value+".";
-        } if (cpf.value.length===11){
-            cpf.value=cpf.value+"-";
-        }
-    }
-
-    function mascaraTele(e){
-        var tele = e.target;
-        if(tele.value.length===1)
-            tele.value="("+tele.value;
-        if(tele.value.length===3)
-            tele.value=tele.value+") ";
-        if(tele.value.length===10)
-            tele.value=tele.value+"-";			
-    }
-
     function mascaraCEP(e){
         var cep = e.target;
         if(cep.value.length===5)
@@ -227,16 +207,17 @@ export default function RegisterClient(){
             {/* <!-- CEP E ESTADO --> */}
                 <div className="row">
                     <div className="col-lg-6">
-                        <div className="input-formula">
-                            <input onChange={formChange} maxLength="15" onKeyUp={mascaraTele} value={form.whatsapp} type="text" name="whatsapp" id="whatsapp" className="input-float" placeholder="A" />
-                            <label for="whatsapp" id="label" className="label-float">
+                        <div className="form-group">
+                            <label for="whatsapp" className="mask-label">
                                 Whatsapp
                             </label>
+                            <InputMask mask="(99) 99999-9999" placeholder="(xx) xxxxx-xxxx" onChange={formChange} name="whatsapp" value={form.whatsapp} className="form-control mask-input">
+                            </InputMask>
                         </div>
                     </div>
                     <div className="col-lg-6">
                         <div className="input-formula">
-                            <input onChange={formChange} onKeyUp={mascaraCpf} maxlength="14" value={form.cpf} type="text" name="cpf" id="cpf" className="input-float" placeholder="A" />
+                            <input onChange={formChange} maxlength="18" value={form.cpf} type="text" name="cpf" id="cpf" className="input-float" placeholder="A" />
                             <label for="cpf" id="label" className="label-float">
                                 CPF/CNPJ
                             </label>

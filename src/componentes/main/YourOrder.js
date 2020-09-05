@@ -10,26 +10,14 @@ export default function YourOrder() {
 
     let cart = useSelector(state => state.cart);
 
-    let teste = cart.map((item,index) => {
-        return({id : index, quant : 1})
-    });
-
-    console.log(teste)
-
     const dispatch = useDispatch();
     const [qtd,setQtd] = useState(1);
 
     function addQtd(index){
-        teste.map(item => {
-            if(item.id === index){
-                item.quant = 5;
-            }
-            return item;
-        })
     }
 
-    function rmQtd(){
-    setQtd(qtd-1);
+    function rmQtd(idx){
+        setQtd(qtd-1);
     }
 
 
@@ -103,15 +91,18 @@ export default function YourOrder() {
             {cart.map((cart,index) => 
                 <li key={index} className="list-group-item item-orcamento">
                 <div className="d-flex w-100 justify-content-between">
-                    <h6>{cart.cat} - {cart.produto.nome_produto} </h6>
-                    <small onClick={() => removeItemCart(index)}><i className="fas fa-trash"></i></small>
+                <h6>{cart.cat}{cart.subcat && `: ${cart.subcat}`} - {cart.produto.nome_produto} </h6>
+                    <small style={{cursor: "pointer"}} onClick={() => removeItemCart(index)}><i className="fas fa-trash"></i></small>
                 </div>
                 <div className="row">
                     <div className="col-6 col-lg-6 col-md-6 col-sm-6">
                         <form className="form-inline">
                             <div className="form-group">
-                                <label for="inputPassword6">Qtd : 1</label> &nbsp;
-                                {/* <input type="number" id="inputPassword6" className="form-control form-control-sm" style={{width:60,fontSize:10}} /> */}
+                                <label for="inputPassword6">Qtd : &nbsp;
+                                    <small><i className="fas fa-minus text-danger" onClick={()=>rmQtd(index)} type="button"></i></small> &nbsp;
+                                        1
+                                    &nbsp; <small><i className="fas fa-plus text-success" type="button"></i></small>
+                                </label>
                             </div>
                         </form>
                     </div>

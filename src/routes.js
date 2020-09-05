@@ -9,8 +9,8 @@ export default function Routes (){
     return(
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={Index} />
-                <Route path="/login" component={login} />
+                <Route path="/" exact component={login} />
+                <Route path="/home" component={Index} />
                 <Route path="/pending" component={Pending} />
                 <Route path="/approved" component={Approved} />
             </Switch>

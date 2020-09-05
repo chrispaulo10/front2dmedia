@@ -1,63 +1,63 @@
-import React,  {useState, useEffect} from 'react';
-import logo from '../../img/LogoHBranco.png';
+import React,  {useState} from 'react';
+import logo from '../../img/LogoVBranco.png';
 import './login.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from '../../server/axios';
+import { response } from 'express';
 
 export default function Login (){
 
-    const [token,setToken] = useState();
+    const history = useHistory();
 
-    useEffect(() => {
-        axios.get('').then(
-            response => {
-            setToken(response.data);
-        })
-    }, [])
-    
-    console.log(token)
     const [login, setLogin] = useState({
         email: '',
         password: '',
-        _token: token,
     })
 
     function loginChange(e){
         setLogin({...login, [e.target.name]: e.target.value});
     }
 
-    console.log(login)
-
     function onSubmit(e){
         e.preventDefault();
-        axios.post('/user/login', login).then(
-            response => {
-            console.log(response)
-        })
-        setLogin({
-            email: '',
-            password: ''
-        })
+        try {
+            axios.post('/user/login', login).then(
+                response => {
+                console.log(response)
+                localStorage.setItem('name', response.data.name)
+            })
+            history.push('/home')
+            setLogin({
+                email: '',
+                password: ''
+            })
+        } catch (error) {
+            alert('Erro no login, tente novamente');
+        }
     }
-
+    const [type, setType] = useState({
+        type: "password",
+        label : "Exibir"
+    });
+    function mudarSenha(e) {
+        if (type.type === "password") {
+            setType({type: "text", label: "Ocultar" })
+        } else {
+            setType({type: "password", label: "Exibir" })
+        }
+    }
+console.log(login)
     return(
 <div>
 <div className="container-fluid register">
                 <div className="row">
-                    <div className="col-md-3 register-left">
-                        <img src={logo} alt=""/>
-                        <h3>Bem Vindo !</h3>
-                        <p className="text-justify">Acompanhe seu pedido entrando com email e senha! <br /> Em caso de dúvida contate a empresa! </p>
+                    <div className="col-lg-5 col-md-5 col-sm-12 col-12 register-left">
+                        <img src={logo} width="140" alt=""/>
+                        <h3>Bem-Vindo!</h3>
+                        <p>Seja bem-vindo ao sistema premium de atendimento da agência 2D Media! <br />
+                        Efetive o login para continuar.</p>
                     </div>
-                    <div className="col-md-9 register-right">
-                        <ul className="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                            <li className="nav-item">
-                                <Link className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Login</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/register" className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Cadastro</Link>
-                            </li>
-                        </ul>
+                    <div className="col-lg-7 col-md-7 col-sm-12 col-12 register-right">
                                 <h3 className="register-heading">Informe seu Login</h3>
                                 <div className="register-form">
                                     <center>
@@ -68,14 +68,14 @@ export default function Login (){
                                             Email
                                         </label>
                                     </div>
-                                    <div className="input-formula mb-4">
-                                        <input required onChange={loginChange} value={login.password} type="password" name="password" id="password" className="input-float" placeholder="A" />
+                                    <div className="input-formula mb-1">
+                                        <input required onChange={loginChange} value={login.password} type={type.type} name="password" id="password" className="input-float" placeholder="A" />
                                         <label for="password" id="label" className="label-float">
                                             Senha
                                         </label>
                                     </div>
+                                    <button className="btn btn-link float-right mt-0 text-purple" onClick={mudarSenha} > <small> {type.label} senha </small></button>
                                     <button className="glossy_button mb-3" onClick={onSubmit}>Entrar</button> <br />
-                                    <Link className="link-back" to="/"> Voltar </Link>
                                     </div>
                                     </center>
                                 </div>

@@ -10,14 +10,7 @@ function Index() {
     <div>
     <Headers/>
     <Container>
-      <Row>
-        <Col lg="8" md="12" sm="12" xs="12">
-          <Menu />
-        </Col>
-        <Col lg="4" className="body-order" >
-          <YourOrder />
-        </Col>
-      </Row>
+      <Menu />
     </Container>
     {/* <a href="# " className="back-to-top"><i class="fas fa-chevron-up"></i></a> */}
     </div>

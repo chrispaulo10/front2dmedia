@@ -77,6 +77,18 @@ body{
     width: auto;
     letter-spacing: 0.5px;
   }
+  .subcategorias{
+    background-color: var(--main);
+    /* border-top: 3px solid var(--main); */
+    color: #F1F4F6;
+    font-size: 17px;
+    font-weight: 600;
+    list-style: outside none none !important;
+    /* padding: 1em 2em 1em 2em !important; */
+    position: relative;
+    width: auto;
+    letter-spacing: 0.5px;
+  }
   .meioAmeio a{
     color: var(--main);
   }
@@ -583,6 +595,23 @@ body{
   transform-origin: left top;
   color: #757575;
   position: absolute;
+}
+
+.mask-input{
+  margin-top: -2px;
+  border: none;
+  border-bottom: 2px solid #9e9e9e;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.mask-input:focus,
+.mask-input:not(:placeholder-shown){
+  border-bottom: 2px solid var(--main);
+}
+.mask-label:focus,
+.mask-label:not(:placeholder-shown){
+  color: var(--main);
 }
 
 .input-float{

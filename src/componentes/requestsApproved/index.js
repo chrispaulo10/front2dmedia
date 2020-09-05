@@ -21,7 +21,6 @@ export default function RequestApproved(){
                 }else{
                     let modify = retorno.data
                     setAll(modify)
-                    console.log(modify)
                     setAll2(
                         modify.map(item => {
                             return({
