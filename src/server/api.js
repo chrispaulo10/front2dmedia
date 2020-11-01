@@ -1,4 +1,4 @@
 module.exports = {
-    base_url : "http://localhost/2d-back-end/logica/controllers/" ,
+    base_url : "http://gestao.2dmedia.com.br/logica/controllers/" ,
     id : 1
 };

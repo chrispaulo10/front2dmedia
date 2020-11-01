@@ -50,9 +50,17 @@ export default function FinishRequestPending({dados, id_proprietario = 1 , valor
     
     useEffect(()=>{
         frete.tipo === 2 &&
-        axios.get(`ControllerCliente.php?consultar_endereco&id_cliente=${dados.id}`).then(
+        axios.get(`ControllerCliente.php?consultar_endereco&id_cliente=${dados.id}`)
+        .then(
             retornando => {
-                setAddressClient(retornando.data)
+                if (retornando.data.error) {
+                    alert(`Nenhum endereço cadastrado no cliente : ${dados.nome}`)
+                        setFrete({...frete, tipo: 1})
+                        setFinal({...final, tipo_frete : 1})
+                } else {
+                    setAddressClient(retornando.data)
+                }
+                
             }
         )
     },[dados.id, frete.tipo])
@@ -135,7 +143,42 @@ export default function FinishRequestPending({dados, id_proprietario = 1 , valor
             }
     }
 
-    console.log(final)
+    const [consultaCorreio, setConsultaCorreio] = useState({
+        cep_origem: '',
+        cep_destino: '',
+        formato: 1,
+        comprimento: 0,
+        altura: 0,
+        largura: 0,
+        peso: 0,
+        valor: 0,
+    })
+
+    const mudaConsulta = e =>{
+        setConsultaCorreio({...consultaCorreio, [e.target.name]: e.target.value});
+    }
+    
+    const [resultCorreioPAC, setResultConsult] = useState("");
+    const [resultCorreioSED, setResultConsultSED] = useState("");
+
+    const pesquisarCorreio = e =>{
+        var url1 = `ControllerCompra.php?consultar_valor_frete&cep_origem=${consultaCorreio.cep_origem}&cep_destino=${consultaCorreio.cep_destino}&formato=${consultaCorreio.formato}&peso=${consultaCorreio.peso}&valor=${consultaCorreio.valor}&tipo_frete=04510&altura=${consultaCorreio.altura}&largura=${consultaCorreio.largura}&comprimento=${consultaCorreio.comprimento}`
+        axios.get(url1).then(retorno => {
+            setResultConsult(retorno.data.cServico)
+            console.log(retorno.data);
+        }).catch(function (error) {
+            console.log(error);
+        })
+        var url2 = `ControllerCompra.php?consultar_valor_frete&cep_origem=${consultaCorreio.cep_origem}&cep_destino=${consultaCorreio.cep_destino}&formato=${consultaCorreio.formato}&peso=${consultaCorreio.peso}&valor=${consultaCorreio.valor}&tipo_frete=04014&altura=${consultaCorreio.altura}&largura=${consultaCorreio.largura}&comprimento=${consultaCorreio.comprimento}`
+        axios.get(url2).then(retorno => {
+            setResultConsultSED(retorno.data.cServico)
+            console.log(retorno.data);
+        }).catch(function (error) {
+            console.log(error);
+        })
+    }
+    console.log(consultaCorreio)
+
     return(
         <div>
             <ModalSecond open={opening} size="xl" header="Aprovar orçamento"
@@ -206,8 +249,135 @@ export default function FinishRequestPending({dados, id_proprietario = 1 , valor
                                     </Col>  
                                 </Row>
                         </ListGroupItem>
+
                     ))}
-                    {frete.tipo === 3 && <h4> Calculo de responsabilidade do administrador </h4>}                    
+                    {frete.tipo === 3 && 
+                        <ListGroupItem> 
+                            <div className="row"> 
+                                <div className="co-lg-3 col-md-3">
+                                    <div className="input-formula">
+                                        <input required type="number" name="cep_origem" 
+                                        onChange={mudaConsulta} value={consultaCorreio.cep_origem}
+                                        id="cep_origem" className="input-float" placeholder=" " maxLength="8"/>
+                                        <label for="cep_origem" id="label" className="label-float">
+                                            CEP DE ORIGEM
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="co-lg-3 col-md-3">
+                                    <div className="input-formula">
+                                        <input required type="number"
+                                        onChange={mudaConsulta} value={consultaCorreio.cep_destino}
+                                        name="cep_destino" id="cep_destino" className="input-float" placeholder=" " maxLength="8" />
+                                        <label for="cep_destino" id="label" className="label-float">
+                                            CEP DE DESTINO
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="co-lg-3 col-md-3">
+                                    <div className="input-formula">
+                                    <select className="input-float" onChange={mudaConsulta} value={consultaCorreio.formato}
+                                    name="formato">
+                                        <option value="1"> Pacote </option>
+                                        <option value="3"> Envelope </option>
+                                    </select> 
+                                        <label for="formato" id="label" className="label-float">
+                                            Formato
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="co-lg-3 col-md-3">
+                                    <div className="input-formula">
+                                        <input required type="number" name="valor" 
+                                        onChange={mudaConsulta} value={consultaCorreio.valor}
+                                        id="valor" className="input-float" placeholder=" " />
+                                        <label for="valor" id="label" className="label-float">
+                                            VALOR (R$)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            {/* ///////////////////////////////////////////////// */}
+                            <div className="row"> 
+                                <div className="co-lg-3 col-md-3">
+                                    <div className="input-formula">
+                                        <input required type="number" 
+                                        onChange={mudaConsulta} value={consultaCorreio.comprimento}
+                                        name="comprimento" id="comprimento" className="input-float" placeholder=" " />
+                                        <label for="comprimento" id="label" className="label-float">
+                                            COMPRIMENTO(cm)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="co-lg-3 col-md-3">
+                                    <div className="input-formula">    
+                                        <input required type="number"
+                                        onChange={mudaConsulta} value={consultaCorreio.altura}
+                                        name="altura" id="altura" className="input-float" placeholder=" " />
+                                        <label for="altura" id="label" className="label-float">
+                                            ALTURA(cm)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="co-lg-3 col-md-3">
+                                    <div className="input-formula">
+                                        <input required type="number"
+                                        onChange={mudaConsulta} value={consultaCorreio.largura}
+                                        name="largura" id="largura" className="input-float" placeholder=" " />
+                                        <label for="largura" id="label" className="label-float">
+                                            LARGURA(cm)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="co-lg-3 col-md-3">
+                                    <div className="input-formula">
+                                        <input required type="number"
+                                        onChange={mudaConsulta} value={consultaCorreio.peso}
+                                        name="peso" id="peso" className="input-float" placeholder=" " />
+                                        <label for="peso" id="label" className="label-float">
+                                            PESO(kg)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div> 
+                            <button className="btn btn-purple" onClick={pesquisarCorreio}><i className="fas fa-search"></i> &nbsp; Pesquisar</button>
+
+                            {resultCorreioPAC !== "" &&
+                                <div> 
+                                <h5 className="mt-3 mb-2">Resultados:</h5>
+                                    <table className="table table-hover table-bordered text-center table-sm">
+                                        <tr className="font-weight-bold">
+                                            <td> CORREIOS </td>
+                                            <td> SEDEX </td>
+                                            <td> PAC </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Prazo </td>
+                                            <td> Dia da Postagem + {resultCorreioSED.PrazoEntrega} dias úteis</td>
+                                            <td> Dia da Postagem + {resultCorreioPAC.PrazoEntrega} dias úteis</td>
+                                        </tr>
+                                        <tr>
+                                            <td> Preço Serv. </td>
+                                            <td> R${resultCorreioSED.ValorSemAdicionais} </td>
+                                            <td> R${resultCorreioPAC.ValorSemAdicionais} </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Valor Dec. </td>
+                                            <td> R${resultCorreioSED.ValorValorDeclarado} </td>
+                                            <td> R${resultCorreioPAC.ValorValorDeclarado} </td>
+                                        </tr>
+                                        <tr className="table-info vl-total">
+                                            <td> Valor Total </td>
+                                            <td> R${resultCorreioSED.Valor} </td>
+                                            <td> R${resultCorreioPAC.Valor} </td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            }   
+
+                        </ListGroupItem>
+                    }                    
                     </ul>
                     </div>                        
                         <h5> Forma de pagamento </h5>

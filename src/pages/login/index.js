@@ -10,8 +10,9 @@ export default function Login (){
     const history = useHistory();
 
     const [login, setLogin] = useState({
-        email: '',
-        password: '',
+        funcionario_logar: true,
+        login: '',
+        senha: '',
     })
 
     function loginChange(e){
@@ -20,20 +21,18 @@ export default function Login (){
 
     function onSubmit(e){
         e.preventDefault();
-        try {
-            axios.post('/user/login', login).then(
+            axios.post(`https://jsonplaceholder.typicode.com/posts`, {numero : 1}).then(
                 response => {
                 console.log(response)
-                localStorage.setItem('name', response.data.name)
+                // localStorage.setItem('name', response.data.name)
+            }).catch(error =>{
+                console.log(error)
             })
-            history.push('/home')
-            setLogin({
-                email: '',
-                password: ''
-            })
-        } catch (error) {
-            alert('Erro no login, tente novamente');
-        }
+            // history.push('/home')
+            // setLogin({
+            //     login: '',
+            //     senha: ''
+            // })
     }
     const [type, setType] = useState({
         type: "password",
@@ -46,7 +45,6 @@ export default function Login (){
             setType({type: "password", label: "Exibir" })
         }
     }
-console.log(login)
     return(
 <div>
 <div className="container-fluid register">
@@ -63,14 +61,14 @@ console.log(login)
                                     <center>
                                     <div className="col-md-7">
                                     <div className="input-formula mb-5">
-                                        <input required onChange={loginChange} value={login.email} type="email" name="email" id="email" className="input-float" placeholder="A" />
+                                        <input required onChange={loginChange} value={login.login} type="text" name="login" id="login" className="input-float" placeholder="A" />
                                         <label for="email" id="label" className="label-float">
-                                            Email
+                                            Login
                                         </label>
                                     </div>
                                     <div className="input-formula mb-1">
-                                        <input required onChange={loginChange} value={login.password} type={type.type} name="password" id="password" className="input-float" placeholder="A" />
-                                        <label for="password" id="label" className="label-float">
+                                        <input required onChange={loginChange} value={login.senha} type={type.type} name="senha" id="senha" className="input-float" placeholder="A" />
+                                        <label for="senha" id="label" className="label-float">
                                             Senha
                                         </label>
                                     </div>

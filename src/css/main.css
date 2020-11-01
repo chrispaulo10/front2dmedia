@@ -722,3 +722,6 @@ input:-internal-autofill-selected {
   background-color: var(--main);
   color: #F1F4F6;
 }
+.border-purple{
+  border: 1px solid var(--main);
+}

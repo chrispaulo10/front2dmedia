@@ -10069,7 +10069,9 @@ button.bg-dark:focus {
 .font-weight-bolder {
   font-weight: bolder !important;
 }
-
+.vl-total{
+  font-weight: 600 !important;
+}
 .teste-40{
   height: 2px;
   width: 100%;
